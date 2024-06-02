@@ -9,13 +9,13 @@ export default function App() {
   const categories = [
     { name: "Exercise", taskno: "12 Tasks", image: require('./images/image1.jpg') },
     { name: "Study", taskno: "12 Tasks", image: require('./Images/image4.jpg') },
-    { name: "Coding", taskno: "12 Tasks", image: require('./Images/coding.jpeg') },
-    { name: "Cook", taskno: "12 Tasks", image: require('./Images/cook.jpeg') },
-    { name: "Dance", taskno: "12 Tasks", image: require('./Images/dancing.jpeg') },
+    { name: "Dance", taskno: "12 Tasks", image: require('./Images/coding.jpeg') },
+    { name: "Run", taskno: "12 Tasks", image: require('./Images/cook.jpeg') },
+    { name: "Sleep", taskno: "12 Tasks", image: require('./Images/dancing.jpeg') },
     { name: "Music", taskno: "12 Tasks", image: require('./Images/music.jpeg') },
-    { name: "Laundry", taskno: "12 Tasks", image: require('./Images/laundry.jpeg') },
-    { name: "Karate", taskno: "12 Tasks", image: require('./Images/karate.jpeg') },
-    { name: "Soccer", taskno: "12 Tasks", image: require('./Images/soccer.jpeg') }
+    { name: "Walk", taskno: "12 Tasks", image: require('./Images/laundry.jpeg') },
+    { name: "Read", taskno: "12 Tasks", image: require('./Images/karate.jpeg') },
+    { name: "Swim", taskno: "12 Tasks", image: require('./Images/soccer.jpeg') }
   ];
 
   return (
