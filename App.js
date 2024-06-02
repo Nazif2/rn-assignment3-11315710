@@ -1,91 +1,168 @@
-import React from "react";
-import { SafeAreaView, StyleSheet, Text, View, ScrollView, SectionList, Image } from 'react-native';
-import Frame1 from './components/Frame1';
-import CustomSearch from './components/Search';
-import CustomCard from './components/Cards';
-import Tasklist from './data.json';
+import React from 'react';
+import { View, Text, ScrollView, TextInput, StyleSheet, FlatList, Image } from 'react-native';
 
-export default function App() {
-  const categories = [
-    { name: "Exercise", taskno: "12 Tasks", image: require('./images/image1.jpg') },
-    { name: "Study", taskno: "12 Tasks", image: require('./Images/image4.jpg') },
-    { name: "Dance", taskno: "12 Tasks", image: require('./Images/coding.jpeg') },
-    { name: "Run", taskno: "12 Tasks", image: require('./Images/cook.jpeg') },
-    { name: "Sleep", taskno: "12 Tasks", image: require('./Images/dancing.jpeg') },
-    { name: "Music", taskno: "12 Tasks", image: require('./Images/music.jpeg') },
-    { name: "Walk", taskno: "12 Tasks", image: require('./Images/laundry.jpeg') },
-    { name: "Read", taskno: "12 Tasks", image: require('./Images/karate.jpeg') },
-    { name: "Swim", taskno: "12 Tasks", image: require('./Images/soccer.jpeg') }
-  ];
+const categories = [
+  { id: '1', name: 'Exercise', tasks: 12, image: require('./images/exercise.jpg') },
+  { id: '2', name: 'Study', tasks: 12, image: require('./images/study.png') },
+  { id: '3', name: 'Code', tasks: 10, image: require('./images/code.jpg') },
+  { id: '4', name: 'Cook', tasks: 8, image: require('./images/cook.jpg') },
+  { id: '5', name: 'Read', tasks: 5, image: require('./images/read.jpg') },
+  { id: '6', name: 'Write', tasks: 6, image: require('./images/write.jpg') },
+  { id: '7', name: 'Meditate', tasks: 4, image: require('./images/meditate.jpg') },
+  { id: '8', name: 'Play', tasks: 9, image: require('./images/play.jpg') },
+];
 
+const ongoingTasks = [
+  { id: '1', name: 'Mobile App Development' },
+  { id: '2', name: 'Web Development' },
+  // Add more tasks to make a total of 15
+  { id: '3', name: 'Database Management' },
+  { id: '4', name: 'UI/UX Design' },
+  { id: '5', name: 'Backend Integration' },
+  { id: '6', name: 'Frontend Development' },
+  { id: '7', name: 'Code Review' },
+  { id: '8', name: 'Testing and QA' },
+  { id: '9', name: 'Documentation' },
+  { id: '10', name: 'Deployment' },
+  { id: '11', name: 'API Development' },
+  { id: '12', name: 'Security Assessment' },
+  { id: '13', name: 'Performance Optimization' },
+  { id: '14', name: 'Feature Planning' },
+  { id: '15', name: 'Client Meeting' },
+];
+
+const App = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView>
-        <Frame1 />
-        <CustomSearch />
-        <ScrollView style={styles.cardContainer}>
-          <Text style={styles.categoryText}>Categories</Text>
-          <ScrollView showsHorizontalScrollIndicator={false} horizontal={true}>
-            {categories.map((category, index) => (
-              <CustomCard key={index} {...category} />
-            ))}
-          </ScrollView>
-        </ScrollView>
-        <SectionList
-          sections={Tasklist}
-          renderItem={({ item }) => (
-            <View style={styles.card}>
-              <Text style={styles.name}>{item}</Text>
-            </View>
-          )}
-          renderSectionHeader={({ section }) => (
-            <Text style={styles.headerStyle}>{section.type}</Text>
-          )}
-          ItemSeparatorComponent={() => <View style={{ height: 16 }} />}
-          SectionSeparatorComponent={() => <View style={{ height: 16, marginBottom: 10 }} />}
-          showsVerticalScrollIndicator={false}
-        />
-      </ScrollView>
-    </SafeAreaView>
+    <ScrollView style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.greeting}>Hello, Devs</Text>
+        <Text style={styles.taskCount}>14 tasks today</Text>
+        <Image style={styles.profileIcon} source={require('./assets/profile.png')} />
+      </View>
+      <View style={styles.searchContainer}>
+        <TextInput style={styles.searchInput} placeholder="Search" />
+        <Image
+    style={styles.searchIcon}
+    source={require('./assets/search.png')}
+  />
+        <Image style={styles.filterIcon} source={require('./assets/filter.png')} />
+      </View>
+      <Text style={styles.sectionTitle}>Categories</Text>
+      <View style={styles.categoriesContainer}>
+  <FlatList
+    data={categories}
+    horizontal={true}
+    showsHorizontalScrollIndicator={false}
+    renderItem={({ item }) => (
+      <View style={styles.categoryCard}>
+        <Image style={styles.categoryImage} source={item.image} />
+        <Text style={styles.categoryName}>{item.name}</Text>
+        <Text style={styles.categoryTasks}>{item.tasks} Tasks</Text>
+      </View>
+    )}
+  />
+</View>
+      <Text style={styles.sectionTitle}>Ongoing Task</Text>
+      <FlatList
+        data={ongoingTasks}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <View style={styles.taskCard}>
+            <Text style={styles.taskName}>{item.name}</Text>
+          </View>
+        )}
+      />
+    </ScrollView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 20,
     backgroundColor: '#F7F0E8',
-    paddingTop: 20,
-    borderRadius: 35,
   },
-  categoryText: {
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  greeting: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 10,
-    marginLeft: 20,
   },
-  cardContainer: {
-    marginTop: 10,
-    paddingHorizontal: 20,
-    marginBottom: 10,
+  taskCount: {
+    fontSize: 16,
+    color: '#777',
   },
-  card: {
-    backgroundColor: 'white',
-    borderRadius: 8,
+  profileIcon: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+  },
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  searchIcon: {
+    width: 24,
+    height: 24,
+    tintColor: '#888',
+  },
+  searchInput: {
+    flex: 1,
     borderWidth: 1,
-    borderColor: '#E8D1BA',
-    elevation: 5,
-    padding: 16,
-    marginHorizontal: 20,
+    borderColor: '#ddd',
+    borderRadius: 5,
+    padding: 10,
+    marginRight: 10,
   },
-  name: {
+  filterIcon: {
+    width: 30,
+    height: 30,
+  },
+  sectionTitle: {
     fontSize: 20,
     fontWeight: 'bold',
+    marginBottom: 10,
   },
-  headerStyle: {
-    fontSize: 24,
+  categoriesContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    marginBottom: 20,
+  },
+  categoryCard: {
+    width: '48%',
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    padding: 10,
+    marginBottom: 10,
+    alignItems: 'center',
+  },
+  categoryImage: {
+    width: 60,
+    height: 60,
+    marginBottom: 10,
+  },
+  categoryName: {
+    fontSize: 16,
     fontWeight: 'bold',
-    marginHorizontal: 20,
-    marginTop: 10,
+  },
+  categoryTasks: {
+    fontSize: 14,
+    color: '#777',
+  },
+  taskCard: {
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    padding: 20,
+    marginBottom: 10,
+  },
+  taskName: {
+    fontSize: 16,
   },
 });
-
+export default App
