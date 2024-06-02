@@ -7,8 +7,8 @@ import Tasklist from './data.json';
 
 export default function App() {
   const categories = [
-    { name: "Exercise", taskno: "12 Tasks", image: require('./Images/young_woman_working_online.png') },
-    { name: "Study", taskno: "12 Tasks", image: require('./Images/young_woman_working_at_desk.png') },
+    { name: "Exercise", taskno: "12 Tasks", image: require('./images/image1.jpg') },
+    { name: "Study", taskno: "12 Tasks", image: require('./Images/image4.jpg') },
     { name: "Coding", taskno: "12 Tasks", image: require('./Images/coding.jpeg') },
     { name: "Cook", taskno: "12 Tasks", image: require('./Images/cook.jpeg') },
     { name: "Dance", taskno: "12 Tasks", image: require('./Images/dancing.jpeg') },

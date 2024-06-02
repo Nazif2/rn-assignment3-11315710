@@ -9,7 +9,7 @@ export default function Frame1() {
                 <Text>Tasks Completed: 14</Text>
             </View>
             <View style={styles.imgContainer}>
-                <Image style={styles.image} source={require('../Images/avatar.png')} />
+                <Image style={styles.image} source={require('../Images/image2.jpg')} />
             </View>
         </View>
     );

@@ -5,7 +5,7 @@ export default function CustomSearch() {
     return (
         <View style={styles.search}>
             <TextInput placeholder='🔍 Search' style={styles.searchBox} />
-            <Image source={require('../Images/filter_icon.png')} style={styles.filterIcon} />
+            <Image source={require('../Images/image3.jpg')} style={styles.filterIcon} />
         </View>
     );
 }
